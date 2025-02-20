@@ -82,7 +82,7 @@ body {
     column-gap: 20px;
     align-items: center;
     width: 100%; */
-        display: grid;
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 40px;
     gap: 20px;
@@ -101,7 +101,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 400px; /* Changed from 50% to 100% */
+    width: 400px;
     height: 230px;
     aspect-ratio: 3 / 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
@@ -110,13 +110,13 @@ body {
 
 /* Card Header */
 .card-header {
-    display: flex;
+
+    display: inline-flex;
     align-items: center;
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
+    justify-content: center;
+    gap: 8px;
 }
+
 
 
 
@@ -208,7 +208,7 @@ body {
     font-size: 15px;
     margin-top: 10px;
     font-weight: 400;
-    text-align: left; /* Ensures labels are left-aligned */
+    text-align: left;
 }
 
 /* Add Button */
@@ -443,6 +443,15 @@ body {
 
 /* Responsive Styles */
 @media screen and (max-width: 768px) {
+    .navbar {
+        width: 100vw;
+        left: 0;
+        right: 0;
+    }
+    
+    .nav-links {
+        width: 100vw;
+    }
     .nav-links {
         display: none;
         flex-direction: column;
@@ -450,7 +459,7 @@ body {
         top: 60px;
         right: 0;
         background-color: white;
-        width: 100%;
+        width: 100;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         text-align: center;
     }
@@ -479,20 +488,18 @@ body {
     #hero {
         font-size: 32px;
     }
-    /* Add responsive padding and margins */
+
     .container {
-        max-width: 95%;  /* Instead of 1000px */
+        max-width: 95%; 
         padding: 0 15px;
     }
 
-    /* Adjust card spacing */
     .card {     
         width: 100%;
-        max-width: 350px;  /* Adjust as needed */
+        max-width: 350px; 
         height: auto;      
     }
 
-    /* Make sure content doesn't overflow */
     .card-header {
         padding: 10px;
     }
