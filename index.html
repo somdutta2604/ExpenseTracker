@@ -6,22 +6,27 @@
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <nav class="navbar">
         <div class="logo">FinTrack</div>
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="hamburger" onclick="toggleMenu()">
+            <span class="menu-icon">☰</span>
+            <span class="close-icon" style="display: none;">✕</span>
+        </div>
         <ul class="nav-links">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Dashboard</a></li>
-            <li><a href="#">Income</a></li>
-            <li><a href="#">Expense</a></li>
-            <li><a href="#">Insights</a></li>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#income">Income</a></li>
+            <li><a href="#expense">Expense</a></li>
+            <li><a href="#insights">Insights</a></li>
         </ul>
     </nav>
-    <section class="hero">     
+    <section id="hero">     
         <h1>Welcome to FinTrack!</h1>
     </section>
-    <section>
+    <section id="dashboard">
         <div class="container">
             <h1 class="title">DASHBOARD</h1>
             <div class="dashboard">
@@ -56,7 +61,7 @@
             </div>
         </div>
    </section>  
-   <section>
+   <section id="income">
     <div class="container">
         <h1 class="income-title">INCOME</h1>
 
@@ -99,7 +104,7 @@
         </div>
     </div>
    </section>
-   <section>
+   <section id="expense">
     <div class="container">
         <h1 class="expense-title">EXPENSE</h1>
     
@@ -142,22 +147,19 @@
         </div>
     </div>    
    </section>
-   <section>
+   <section id="insights">
     <div class="insights-container">
         <h1 class="insights-title">INSIGHTS</h1>
         <button class="analyze-btn">Analyze</button>
     </div>
     </section>
     
-    <section>
+    <section id="footer">
     <div class="footer">
         Made by Somdutta
     </div>
    </section>
     
-   <script>
-   function toggleMenu() {
-    document.querySelector(".nav-links").classList.toggle("active");}
-</script>
+   <script src="script.js"></script>
 </body>
 </html>

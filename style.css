@@ -18,6 +18,10 @@ body {
     padding: 15px 20px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
 }
 
 .logo {
@@ -41,7 +45,7 @@ body {
     font-size: 16px;
 }
 
-.hero {
+#hero {
     height: 80vh;
     display: flex;
     align-items: center;
@@ -72,13 +76,20 @@ body {
 
 /* Dashboard Grid */
 .dashboard {
-    display: grid;
+    /* display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    column-gap: 20px;
+    align-items: center;
+    width: 100%; */
+        display: grid;
     grid-template-columns: repeat(2, 1fr);
     margin-top: 40px;
-    gap: 15px; /* Reduced from 10px to 5px */
-    column-gap: 20px; /* Adjusted from -30px to 10px */
+    gap: 20px;
     align-items: center;
+    justify-items: center; 
 }
+
 
 /* Card Styling */
 .card {
@@ -423,6 +434,7 @@ body {
 }
 
 /* Navbar */
+
 .hamburger {
     display: none;
     font-size: 24px;
@@ -464,7 +476,52 @@ body {
         width: 100%;
     }
 
-    .hero {
+    #hero {
         font-size: 32px;
+    }
+    /* Add responsive padding and margins */
+    .container {
+        max-width: 95%;  /* Instead of 1000px */
+        padding: 0 15px;
+    }
+
+    /* Adjust card spacing */
+    .card {     
+        width: 100%;
+        max-width: 350px;  /* Adjust as needed */
+        height: auto;      
+    }
+
+    /* Make sure content doesn't overflow */
+    .card-header {
+        padding: 10px;
+    }
+
+    .amount {
+        font-size: 1.5rem;
+        word-break: break-word;
+    }
+
+    /* Ensure chart container is responsive */
+    .chart-container {
+        min-height: 300px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    /* Adjust section containers */
+    .income-section,
+    .expense-section {
+        padding: 15px;
+        margin: 10px 0;
+    }
+
+    /* Make inputs more mobile-friendly */
+    input[type="date"],
+    input[type="number"],
+    input[type="text"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 }
