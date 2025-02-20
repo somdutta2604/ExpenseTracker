@@ -515,13 +515,30 @@ body {
         padding: 15px;
         margin: 10px 0;
     }
-gi
+
     /* Make inputs more mobile-friendly */
-    input[type="number"],
     input[type="text"] {
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+    }
+
+    input[type="number"] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: white;
+        appearance: textfield; /* Removes default increment/decrement arrows in some browsers */
+    }
+    
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
     }
     input[type="date"] {
         appearance: none;
