@@ -261,7 +261,7 @@ body {
     display: visible;
 }
 
-.history-item {
+/* .history-item {
 
 }
 
@@ -271,7 +271,7 @@ body {
 
 .history-amount {
 
-}
+} */
 
 /* Center Chart Text */
 .chart {
@@ -383,23 +383,23 @@ canvas {
 }
 
 /* History Text */
-.history-text small {
+/* .history-text small { */
     /* display: block;
     font-size: 12px;
     text-align: left;
     color: #d8f8e4;
     font-weight: light; */
-}
+/* } */
 
 /* Negative History Amount */
-.history-amount {
-    /* font-size: 18px;
-    font-weight: 300; */
-}
+/* .history-amount {
+    font-size: 18px;
+    font-weight: 300; 
+} */
 
-.history-amount.negative {
-    /* color: #dbf1e6;  */
-}
+/* .history-amount.negative {
+    color: #dbf1e6; 
+} */
 
 /* Center Chart Text */
 .chart {
