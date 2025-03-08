@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -33,14 +34,14 @@
                 <!-- Total Card -->
                 <div class="card">
                     <div class="card-header">
-                        <span class="text">💰Balance</span>
+                        <span class="text">💰Total</span>
                     </div>
                     <h2 id="totalamount">₹0/-</h2>
                 </div>
     
                 <!-- Chart Section -->
                 <div class="card chart-container">
-                    <canvas id="chart"></canvas>
+                    <canvas id="dashboardChart"></canvas>
                 </div>
     
                 <!-- Income Card -->
@@ -84,22 +85,23 @@
                 </div>
 
                 <!-- History Section -->
-                <div class="income-section">
+                <div class="income-section" id="income-sec">
                     <h2>HISTORY</h2>
-                    <div id="incomehistory-item">
+                    <!-- <div id="incomehistory-item">
                         <div class="history-text">
-                            <strong></strong>
-                            <small></small>
+                            <strong>Salary</strong>
+                            <small>2 min ago</small>
                         </div>
-                        <div class="history-amount"></div>
-                    </div>
+                         <div class="history-amount">+ ₹500000</div> 
+                    </div> -->
                 </div>
 
                 <!-- Chart Section -->
                 <div class="income-section chart">
-                    <h2>CHART</h2>
-                    
+                    <h2>CHART</h2> 
+                    <canvas id="incomeChart"></canvas>                 
                 </div>
+
 
             </div>
         </div>
@@ -128,21 +130,23 @@
                 </div>
     
                 <!-- History Section -->
-                <div class="expense-section">
+                <div class="expense-section" id="exp-sec">
                     <h2>HISTORY</h2>
-                    <div id="expensehistory-item">
-                        <div class="history-text">
+                    <!-- <div id="expensehistory-item">
+                        <div class="history-text" id="exphist-text">
                             <strong>Groceries</strong>
                             <small>5 min ago</small>
                         </div>
                         <div class="history-amount negative">- ₹2000</div>
-                    </div>
+                    </div> -->
                 </div>
     
                 <!-- Chart Section -->
                 <div class="expense-section chart">
                     <h2>CHART</h2>
+                    <canvas id="expenseChart"></canvas>
                 </div>
+
     
             </div>
         </div>
@@ -161,7 +165,6 @@
         Made by <a href="https://github.com/somdutta2604">Somdutta</a> 
     </div>
    </section>
-   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script src="script.js"></script>
 </body>
 </html>

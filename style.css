@@ -203,6 +203,7 @@ body {
     padding: 20px;
     border-radius: 8px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+    
 }
 
 /* Section Headings */
@@ -251,31 +252,25 @@ body {
 #incomehistory-item {
     background: #004d00;
     color: white;
-    padding: 12px;
+    padding: 10px;
     border-radius: 5px;
-    gap: 20px;
-    /* display: flex; */
+    display: flex;
+    margin-bottom: 10px;
     justify-content: space-between;
     align-items: center;
-    display: none;
+    display: visible;
 }
 
 .history-item {
-    display: none;
-    gap: 20px;
+
 }
 
 .history-text small {
-    display: block;
-    font-size: 10px;
-    text-align: left;
-    color: #bbb;
-    font-weight: light;
+
 }
 
 .history-amount {
-    font-size: 18px;
-    font-weight: 300;
+
 }
 
 /* Center Chart Text */
@@ -285,6 +280,11 @@ body {
     /* align-items: center; */
     font-size: 18px;
     
+}
+
+canvas {
+    max-width: 100%;
+    height: 300px !important;
 }
 
 /* Expense Section Styles */
@@ -379,26 +379,26 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
-    display: none;
+    display: visible;
 }
 
 /* History Text */
 .history-text small {
-    display: block;
+    /* display: block;
     font-size: 12px;
     text-align: left;
     color: #d8f8e4;
-    font-weight: light;
+    font-weight: light; */
 }
 
 /* Negative History Amount */
 .history-amount {
-    font-size: 18px;
-    font-weight: 300;
+    /* font-size: 18px;
+    font-weight: 300; */
 }
 
 .history-amount.negative {
-    color: #dbf1e6; 
+    /* color: #dbf1e6;  */
 }
 
 /* Center Chart Text */
