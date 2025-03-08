@@ -33,6 +33,7 @@ body {
 .nav-links {
     list-style: none;
     display: flex;
+    
 }
 
 .nav-links li {
@@ -43,6 +44,10 @@ body {
     text-decoration: none;
     color: black;
     font-size: 16px;
+}
+
+.nav-links.active {
+    display: flex;
 }
 
 #hero {
@@ -94,8 +99,8 @@ body {
 /* Card Styling */
 .card {
     background-color: #166534;
-    color: white;
-    padding: 20px;
+    color: rgb(255, 255, 255);
+    padding: 10px;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -106,6 +111,8 @@ body {
     aspect-ratio: 3 / 1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
     text-align: left;
+    font-size: 30px;
+    font-weight: bolder;
 }
 
 /* Card Header */
@@ -121,7 +128,19 @@ body {
 
 
 /* Amount Styling */
-.amount {
+#totalamount {
+    font-size: 28px;
+    font-weight: 200;
+    margin-top: 20px;
+}
+
+#incamount {
+    font-size: 28px;
+    font-weight: 200;
+    margin-top: 20px;
+}
+
+#expamount {
     font-size: 28px;
     font-weight: 200;
     margin-top: 20px;
@@ -212,7 +231,7 @@ body {
 }
 
 /* Add Button */
-.add-btn {
+#add-btn {
     width: 100%;
     padding: 10px;
     background: #004d00;
@@ -223,25 +242,32 @@ body {
     cursor: pointer;
 }
 
-.add-btn:hover {
+#add-btn:hover {
     background-color: #d0e7d0;
     color: #003300;
 }
 
 /* History Item */
-.history-item {
+#incomehistory-item {
     background: #004d00;
     color: white;
-    padding: 10px;
+    padding: 12px;
     border-radius: 5px;
-    display: flex;
+    gap: 20px;
+    /* display: flex; */
     justify-content: space-between;
     align-items: center;
+    display: none;
+}
+
+.history-item {
+    display: none;
+    gap: 20px;
 }
 
 .history-text small {
     display: block;
-    font-size: 12px;
+    font-size: 10px;
     text-align: left;
     color: #bbb;
     font-weight: light;
@@ -327,7 +353,7 @@ body {
 }
 
 /* Add Button */
-.add-btn {
+#addibtn {
     width: 100%;
     padding: 10px;
     background: #166534; /* Dark Red */
@@ -338,13 +364,13 @@ body {
     cursor: pointer;
 }
 
-.add-btn:hover {
+#addibtn:hover {
     background-color: #d0e7d0;
     color: #003300;
 }
 
 /* History Item */
-.history-item {
+#expensehistory-item {
     background:  #166534;
     color: white;
     padding: 10px;
@@ -353,6 +379,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-top: 20px;
+    display: none;
 }
 
 /* History Text */
@@ -431,6 +458,16 @@ body {
     color: #004d00;
     bottom: 0;
     left: 0;
+}
+
+.footer a{
+    color: #004d00;
+    text-decoration: none;  
+    font-size: 16px;
+}
+
+#totalamount, #incamount, #expamount {
+    visibility: hidden;
 }
 
 /* Navbar */
@@ -559,3 +596,46 @@ body {
         font-size: 16px;
     }
 }
+/* Style for amount text in total, income, and expense containers */
+#totalamount,
+#incamount,
+#expamount {
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+    color: #333;
+    animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#totalamount {
+    color: #2196F3; /* Blue for total balance */
+}
+
+#incamount {
+    color: #4CAF50; /* Green for income */
+}
+
+#expamount {
+    color: #f44336; /* Red for expenses */
+}
+
+/* Ensure amounts are always visible */
+.card h2 {
+    min-height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+

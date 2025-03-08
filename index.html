@@ -11,7 +11,7 @@
 
     <nav class="navbar">
         <div class="logo">FinTrack</div>
-        <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger" onclick="Show()">
             <span class="menu-icon">☰</span>
             <span class="close-icon" style="display: none;">✕</span>
         </div>
@@ -35,7 +35,7 @@
                     <div class="card-header">
                         <span class="text">💰Balance</span>
                     </div>
-                    <h2 class="amount">₹1000000/-</h2>
+                    <h2 id="totalamount">₹0/-</h2>
                 </div>
     
                 <!-- Chart Section -->
@@ -48,7 +48,7 @@
                     <div class="card-header">
                         <span class="text">💸Income</span>
                     </div>
-                    <h2 class="amount">₹1000000/-</h2>
+                    <h2 id="incamount">₹0/-</h2>
                 </div>
     
                 <!-- Expense Card -->
@@ -56,7 +56,7 @@
                     <div class="card-header">
                         <span class="text">💵Expense</span>
                     </div>
-                    <h2 class="amount">₹1000000/-</h2>
+                    <h2 id="expamount">₹0/-</h2>
                 </div>
             </div>
         </div>
@@ -80,24 +80,25 @@
                     <label for="details">DETAILS:</label>
                     <input type="text" id="details" placeholder="Enter details">
 
-                    <button class="add-btn">ADD</button>
+                    <button id="add-btn">ADD</button>
                 </div>
 
                 <!-- History Section -->
                 <div class="income-section">
                     <h2>HISTORY</h2>
-                    <div class="history-item">
+                    <div id="incomehistory-item">
                         <div class="history-text">
-                            <strong>Salary</strong>
-                            <small>2 min ago</small>
+                            <strong></strong>
+                            <small></small>
                         </div>
-                        <div class="history-amount">+ ₹500000</div>
+                        <div class="history-amount"></div>
                     </div>
                 </div>
 
                 <!-- Chart Section -->
                 <div class="income-section chart">
                     <h2>CHART</h2>
+                    
                 </div>
 
             </div>
@@ -123,13 +124,13 @@
                     <label for="expense-details">DETAILS:</label>
                     <input type="text" id="expense-details" placeholder="Enter details">
     
-                    <button class="add-btn">ADD</button>
+                    <button id="addibtn">ADD</button>
                 </div>
     
                 <!-- History Section -->
                 <div class="expense-section">
                     <h2>HISTORY</h2>
-                    <div class="history-item">
+                    <div id="expensehistory-item">
                         <div class="history-text">
                             <strong>Groceries</strong>
                             <small>5 min ago</small>
@@ -150,16 +151,17 @@
    <section id="insights">
     <div class="insights-container">
         <h1 class="insights-title">INSIGHTS</h1>
-        <button class="analyze-btn">Analyze</button>
+        <p id="ai-output"></p>
+        <button class="analyze-btn">Analyze</button>       
     </div>
     </section>
     
     <section id="footer">
     <div class="footer">
-        Made by Somdutta
+        Made by <a href="https://github.com/somdutta2604">Somdutta</a> 
     </div>
    </section>
-    
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <script src="script.js"></script>
 </body>
 </html>
