@@ -147,7 +147,7 @@ body {
 }
 
 /* Chart Container */
-.chart-container {
+.charts-container {
     background-color: white;
     display: flex;
     align-items: center;
@@ -261,6 +261,7 @@ body {
     display: visible;
 }
 
+
 /* .history-item {
 
 }
@@ -273,18 +274,40 @@ body {
 
 } */
 
-/* Center Chart Text */
+
+
+.chart-container{
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    height: 50%; 
+    width: 700%;
+    margin-top: 30%;
+    margin-right: 25%;
+    background-color: #c8c6c6;
+    text-align: center; 
+
+}
+
+#ctext{
+    text-align: center; /* Ensures text is aligned */
+    width: 100%; /* Makes sure it covers the full width */
+    font-weight: bold;
+    color:#166534 ;
+}
 .chart {
     display: flex;
     justify-content: center;
     /* align-items: center; */
     font-size: 18px;
+    text-align: center;
     
 }
 
 canvas {
-    max-width: 100%;
-    height: 300px !important;
+    width: 80%;  /* Adjust width */
+    height: 250px;/* Adjust height */
+    
 }
 
 /* Expense Section Styles */

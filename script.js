@@ -24,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function () {
     let monthlyExpense = 0;
     let incomeSources = {};
     let expenseCategories = {};
+    let incomeData = new Array(12).fill(0);
+    let expenseData = new Array(12).fill(0);
 
     function updateTotal() {
         totalBalance = totalIncome - totalExpense;
@@ -169,6 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const incomeCtx = document.getElementById("incomeChart").getContext("2d");
     const expenseCtx = document.getElementById("expenseChart").getContext("2d");
 
+    // Initialize Charts
     const chart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -189,10 +192,21 @@ document.addEventListener("DOMContentLoaded", function () {
         type: "doughnut",
         data: {
             labels: [],
-            datasets: [{ data: [], backgroundColor: ["#A52A2A", "#0000FF", "#008000", "#FF0000"] }]
+            datasets: [{
+                data: [],
+                backgroundColor: ["#A52A2A", "#0000FF", "#008000", "#FF0000"]
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: true,
+                    position: "bottom" // Moves legend below the chart
+                }
+            }
         }
     });
-
     const expenseChart = new Chart(expenseCtx, {
         type: "doughnut",
         data: {
@@ -201,10 +215,33 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
+    // Fix updateChart function
     function updateChart(income, expense, monthIndex) {
         incomeData[monthIndex] += income;
         expenseData[monthIndex] += expense;
+        chart.data.datasets[0].data = [...incomeData];  // Update dataset with new values
+        chart.data.datasets[1].data = [...expenseData];
         chart.update();
     }
-});
 
+    function updateIncomeChart() {
+        incomeChart.data.labels = Object.keys(incomeSources); // Labels from income sources
+        incomeChart.data.datasets[0].data = Object.values(incomeSources); // Values from income sources
+        incomeChart.update();
+    }
+    
+    function updateExpenseChart() {
+        expenseChart.data.labels = Object.keys(expenseCategories); // Labels from expense categories
+        expenseChart.data.datasets[0].data = Object.values(expenseCategories); // Values from expense categories
+        expenseChart.update();
+    }
+    
+    // Call these functions inside your add income/expense sections
+    document.getElementById("add-btn").addEventListener("click", function () {
+        updateIncomeChart(); // Update income chart when adding income
+    });
+    
+    document.getElementById("addibtn").addEventListener("click", function () {
+        updateExpenseChart(); // Update expense chart when adding expense
+    });
+});

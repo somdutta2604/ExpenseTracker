@@ -40,7 +40,7 @@
                 </div>
     
                 <!-- Chart Section -->
-                <div class="card chart-container">
+                <div class="card charts-container">
                     <canvas id="dashboardChart"></canvas>
                 </div>
     
@@ -98,8 +98,11 @@
 
                 <!-- Chart Section -->
                 <div class="income-section chart">
-                    <h2>CHART</h2> 
-                    <canvas id="incomeChart"></canvas>                 
+                    <h2 id="ctext">CHART</h2>
+                    <div class="chart-container">
+                        <canvas id="incomeChart"></canvas> 
+                    </div> 
+                                    
                 </div>
 
 
@@ -144,7 +147,9 @@
                 <!-- Chart Section -->
                 <div class="expense-section chart">
                     <h2>CHART</h2>
-                    <canvas id="expenseChart"></canvas>
+                    <div class="chart-container"><canvas id="expenseChart"></canvas>
+                    </div>
+                    
                 </div>
 
     
