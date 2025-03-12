@@ -171,7 +171,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const incomeCtx = document.getElementById("incomeChart").getContext("2d");
     const expenseCtx = document.getElementById("expenseChart").getContext("2d");
 
-    // Initialize Charts
+
     const chart = new Chart(ctx, {
         type: "bar",
         data: {
@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", function () {
             plugins: {
                 legend: {
                     display: true,
-                    position: "bottom" // Moves legend below the chart
+                    position: "bottom"
                 }
             }
         }
@@ -215,24 +215,24 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Fix updateChart function
+
     function updateChart(income, expense, monthIndex) {
         incomeData[monthIndex] += income;
         expenseData[monthIndex] += expense;
-        chart.data.datasets[0].data = [...incomeData];  // Update dataset with new values
+        chart.data.datasets[0].data = [...incomeData]; 
         chart.data.datasets[1].data = [...expenseData];
         chart.update();
     }
 
     function updateIncomeChart() {
-        incomeChart.data.labels = Object.keys(incomeSources); // Labels from income sources
-        incomeChart.data.datasets[0].data = Object.values(incomeSources); // Values from income sources
+        incomeChart.data.labels = Object.keys(incomeSources); 
+        incomeChart.data.datasets[0].data = Object.values(incomeSources);
         incomeChart.update();
     }
     
     function updateExpenseChart() {
-        expenseChart.data.labels = Object.keys(expenseCategories); // Labels from expense categories
-        expenseChart.data.datasets[0].data = Object.values(expenseCategories); // Values from expense categories
+        expenseChart.data.labels = Object.keys(expenseCategories);
+        expenseChart.data.datasets[0].data = Object.values(expenseCategories); 
         expenseChart.update();
     }
     
@@ -242,6 +242,87 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     document.getElementById("addibtn").addEventListener("click", function () {
-        updateExpenseChart(); // Update expense chart when adding expense
+        updateExpenseChart();
     });
-});
+
+
+    //ai insights
+
+    //AIzaSyAULsKyoyUyAbVTwZiWFynAzFaXuT82ByM
+        const API_KEY = "YOUR_SECURED_API_KEY";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+     
+        async function generateInsights() {
+            const totalIncome = Object.values(incomeSources).reduce((a, b) => a + b, 0);
+            const totalExpense = Object.values(expenseCategories).reduce((a, b) => a + b, 0);
+            const savings = totalIncome - totalExpense;
+        
+            const incomeSummary = Object.entries(incomeSources)
+                .map(([source, amount]) => `${source}: ₹${amount}`)
+                .join(", ");
+            const expenseSummary = Object.entries(expenseCategories)
+                .map(([category, amount]) => `${category}: ₹${amount}`)
+                .join(", ");
+        
+            const prompt = `Analyze the following financial data and provide insights to optimize expenses and increase savings in 3 lines.
+        
+            **Income Sources:**
+            ${incomeSummary}  
+            **Total Income:** ₹${totalIncome}
+        
+            **Expense Categories:**
+            ${expenseSummary}  
+            **Total Expenses:** ₹${totalExpense}
+        
+            **Savings:** ₹${savings}
+        
+            Based on this data, suggest actionable strategies to:
+            1. Reduce unnecessary expenses
+            2. Improve savings and budgeting
+            3. Optimize income allocation`;
+        
+            try {
+                const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=YOUR_GEMINI_API_KEY', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+        
+                const data = await response.json();
+                const aiResponse = data.candidates[0].content.parts[0].text;
+                
+                document.getElementById("ai-output").innerText = aiResponse;
+            } catch (error) {
+                console.error("Error fetching AI insights:", error);
+                document.getElementById("ai-output").innerText = "Error generating insights. Please try again.";
+            }
+        }
+        
+            function generateExpensePrompt() {
+            let totalExpense = 0;
+            let expenseCategories = {};
+        
+            transactionHistory.forEach(txn => {
+                if (txn.type === "expense") {
+                    totalExpense += txn.amount;
+                    expenseCategories[txn.category] = (expenseCategories[txn.category] || 0) + txn.amount;
+                }
+            });
+        
+            const expenseSummary = Object.entries(expenseCategories)
+                .map(([category, amount]) => `${category}: ₹${amount}`)
+                .join(", ");
+        
+            return `Based on the following expenses, identify areas where spending can be reduced:
+        
+            **Expense Categories:**
+            ${expenseSummary}
+        
+            **Total Expenses:** ₹${totalExpense}
+        
+            Suggest **ONLY the top 3 ways to cut down unnecessary spending.** Keep it short and direct.`;
+        }
+        
+    });
+    
+    
