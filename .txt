@@ -1,52 +1,225 @@
-function Show() {
-    let menuIcon = document.querySelector(".menu-icon");
-    let closeIcon = document.querySelector(".close-icon");
-    let navLinks = document.querySelector(".nav-links");
+// function Show() {
+    //     let menuIcon = document.querySelector(".menu-icon");
+    //     let closeIcon = document.querySelector(".close-icon");
+    //     let navLinks = document.querySelector(".nav-links");
 
-    if (navLinks.classList.contains("active")) {
-        navLinks.classList.remove("active");
-        menuIcon.style.display = "inline";
-        closeIcon.style.display = "none";
-    } else {
-        navLinks.classList.add("active");
-        menuIcon.style.display = "none";
-        closeIcon.style.display = "inline";
-    }
-}
+    //     if (navLinks.style.display === "flex") {
+    //         navLinks.style.display = "none";
+    //         menuIcon.style.display = "inline";
+    //         closeIcon.style.display = "none";
+    //     } else {
+    //         navLinks.style.display = "flex";
+    //         menuIcon.style.display = "none";
+    //         closeIcon.style.display = "inline";
+    //     }
+    // }
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".hamburger").addEventListener("click", Show);
+    // document.querySelector(".hamburger").addEventListener("click", Show);
+
+    // let totalBalance = 0;
+    // let totalExpense = 0;
+    // let totalIncome = 0;
+    // let monthlyIncome = 0;
+    // let monthlyExpense = 0;
+    // let incomeSources = {};
+    // let expenseCategories = {};
+    // let incomeData = new Array(12).fill(0);
+    // let expenseData = new Array(12).fill(0);
+    // let transactionHistory = JSON.parse(localStorage.getItem("transactions")) || [];
     
-    // Additional functionality for closing menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            let navLinks = document.querySelector(".nav-links");
-            let menuIcon = document.querySelector(".menu-icon");
-            let closeIcon = document.querySelector(".close-icon");
-            
-            if (window.innerWidth <= 768) {
-                navLinks.classList.remove("active");
-                menuIcon.style.display = "inline";
-                closeIcon.style.display = "none";
-            }
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        let navLinks = document.querySelector(".nav-links");
-        let hamburger = document.querySelector(".hamburger");
+    // function saveTransactions() {
+    //     localStorage.setItem("transactions", JSON.stringify(transactionHistory));
+    // }
+
+    // function updateTotal() {
+    //     totalBalance = totalIncome - totalExpense;
+    //     const totalAmt = document.getElementById("totalamount");
+
+    //     if (totalAmt) {
+    //         totalAmt.innerText = `₹${totalBalance}/-`;
+    //         totalAmt.style.display = "block";
+    //         totalAmt.style.visibility = "visible";
+    //         totalAmt.style.fontWeight = "100";
+    //         totalAmt.style.color = "white";
+    //     }
+    // }
+
+    // function timeAgo(date) {
+    //     const now = new Date();
+    //     const seconds = Math.floor((now - date) / 1000);
+    //     if (seconds < 60) return `${seconds} sec ago`;
+    //     const minutes = Math.floor(seconds / 60);
+    //     if (minutes < 60) return `${minutes} min ago`;
+    //     const hours = Math.floor(minutes / 60);
+    //     if (hours < 24) return `${hours} hrs ago`;
+    //     const days = Math.floor(hours / 24);
+    //     return `${days} days ago`;
+    // }
+
+    // // Add income
+    // document.getElementById("add-btn").addEventListener("click", function () {
+    //     const incomeAmount = parseFloat(document.getElementById("amount").value);
+    //     const incDate = document.getElementById("date").value;
+    //     const details = document.getElementById("details").value;
+
+    //     if (isNaN(incomeAmount) || incomeAmount <= 0 || !details || !incDate) {
+    //         alert("Please enter valid details!");
+    //         return;
+    //     }
+
+    //     const dashIncome = document.getElementById("incamount");
+    //     if (!dashIncome) return;
+
+    //     let currentIncome = parseFloat(dashIncome.textContent.replace("₹", "")) || 0;
+    //     dashIncome.textContent = `₹${currentIncome + incomeAmount}/-`;
+    //     dashIncome.style.display = "block";
+    //     dashIncome.style.visibility = "visible";
+    //     dashIncome.style.color = "white";
+    //     dashIncome.style.fontWeight = "100";
+
+    //     totalIncome += incomeAmount;
+    //     monthlyIncome += incomeAmount;
+    //     incomeSources[details] = (incomeSources[details] || 0) + incomeAmount;
+    //     updateTotal();
+
+    //     document.getElementById("amount").value = "";
+    //     document.getElementById("date").value = "";
+    //     document.getElementById("details").value = "";
+
+    //     transactionHistory.push({ type: "income", amount: incomeAmount, date: incDate, category: details });
+    //     saveTransactions();
+
+    //     const historyContainer = document.getElementById("income-sec");
+    //     if (!historyContainer) return;
+
+    //     const entryTime = new Date();
+    //     const timeId = `time-${Date.now()}`;
+    //     const historyEntry = document.createElement("div");
+    //     historyEntry.innerHTML = `
+    //         <div id="incomehistory-item">
+    //             <div class="history-text">
+    //                 <strong>${details}</strong>
+    //                 <small id="${timeId}">${timeAgo(entryTime)}</small>
+    //             </div>
+    //             <div class="history-amount">+ ₹${incomeAmount}</div>
+    //         </div>
+    //     `;
+    //     historyContainer.appendChild(historyEntry);
+
+    //     setTimeout(() => {
+    //         const timeElement = document.getElementById(timeId);
+    //         if (timeElement) timeElement.textContent = timeAgo(entryTime);
+    //     }, 60000);
+
+    //     transactionHistory.push({ type: "income", amount: incomeAmount, date: incDate, category: details });
+
+    //     let monthIndex = new Date().getMonth();
+    //     updateChart(incomeAmount, 0, monthIndex);
+    // });
+
+    // // Add expense
+    // document.getElementById("addibtn").addEventListener("click", function () {
+    //     const expenseAmount = parseFloat(document.getElementById("expense-amount").value);
+    //     const expenseDate = document.getElementById("expense-date").value;
+    //     const expenseDetails = document.getElementById("expense-details").value;
+
+    //     if (isNaN(expenseAmount) || expenseAmount <= 0 || !expenseDetails || !expenseDate) {
+    //         alert("Please enter valid details!");
+    //         return;
+    //     }
+
+    //     const dashExpense = document.getElementById("expamount");
+    //     if (!dashExpense) return;
+
+    //     let currentExpense = parseFloat(dashExpense.textContent.replace("₹", "")) || 0;
+    //     dashExpense.textContent = `₹${currentExpense + expenseAmount}/-`;
+    //     dashExpense.style.display = "block";
+    //     dashExpense.style.visibility = "visible";
+    //     dashExpense.style.color = "white";
+    //     dashExpense.style.fontWeight = "100";
+
+    //     totalExpense += expenseAmount;
+    //     monthlyExpense += expenseAmount;
+    //     expenseCategories[expenseDetails] = (expenseCategories[expenseDetails] || 0) + expenseAmount;
+    //     updateTotal();
+
+    //     document.getElementById("expense-amount").value = "";
+    //     document.getElementById("expense-date").value = "";
+    //     document.getElementById("expense-details").value = "";
+
+    //     transactionHistory.push({ type: "expense", amount: expenseAmount, date: expenseDate, category: expenseDetails });
+    //     saveTransactions(); 
+
+    //     const exphistoryContainer = document.getElementById("exp-sec");
+    //     if (!exphistoryContainer) return;
+
+    //     const entryTime = new Date();
+    //     const timeId = `time-${Date.now()}`;
+    //     const exphistoryEntry = document.createElement("div");
+    //     exphistoryEntry.innerHTML = `
+    //         <div id="expensehistory-item">
+    //             <div class="history-text" id="exphist-text">
+    //                 <strong>${expenseDetails}</strong>
+    //                 <small id="${timeId}">${timeAgo(entryTime)}</small>
+    //             </div>
+    //             <div class="history-amount">- ₹${expenseAmount}</div>
+    //         </div>
+    //     `;
+    //     exphistoryContainer.appendChild(exphistoryEntry);
+
+    //     setTimeout(() => {
+    //         const timeElement = document.getElementById(timeId);
+    //         if (timeElement) timeElement.textContent = timeAgo(entryTime);
+    //     }, 60000);
+
+    //     transactionHistory.push({ type: "expense", amount: expenseAmount, date: expenseDate, category: expenseDetails });
+
         
-        if (window.innerWidth <= 768 && 
-            navLinks.classList.contains("active") && 
-            !navLinks.contains(event.target) && 
-            !hamburger.contains(event.target)) {
-            
-            navLinks.classList.remove("active");
-            document.querySelector(".menu-icon").style.display = "inline";
-            document.querySelector(".close-icon").style.display = "none";
+    //     let monthIndex = new Date().getMonth();
+    //     updateChart(0, expenseAmount, monthIndex);
+        
+    // });
+
+    // function restoreTransactions() {
+    //     transactionHistory.forEach((txn) => {
+    //         if (txn.type === "income") {
+    //             totalIncome += txn.amount;
+    //             monthlyIncome += txn.amount;
+    //             incomeSources[txn.category] = (incomeSources[txn.category] || 0) + txn.amount;
+    //         } else {
+    //             totalExpense += txn.amount;
+    //             monthlyExpense += txn.amount;
+    //             expenseCategories[txn.category] = (expenseCategories[txn.category] || 0) + txn.amount;
+    //         }
+    //     });
+    //     updateTotal();
+    // }
+
+    // restoreTransactions();
+
+
+
+
+
+
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+    function Show() {
+        let menuIcon = document.querySelector(".menu-icon");
+        let closeIcon = document.querySelector(".close-icon");
+        let navLinks = document.querySelector(".nav-links");
+
+        if (navLinks.style.display === "flex") {
+            navLinks.style.display = "none";
+            menuIcon.style.display = "inline";
+            closeIcon.style.display = "none";
+        } else {
+            navLinks.style.display = "flex";
+            menuIcon.style.display = "none";
+            closeIcon.style.display = "inline";
         }
-    });
+    }
 
     document.querySelector(".hamburger").addEventListener("click", Show);
 
@@ -60,74 +233,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let incomeData = new Array(12).fill(0);
     let expenseData = new Array(12).fill(0);
     let transactionHistory = [];
-
-    // Load existing transactions from localStorage if available
-    const savedTransactions = localStorage.getItem("transactions");
-    if (savedTransactions) {
-        transactionHistory = JSON.parse(savedTransactions);
-        
-        // Recalculate totals based on saved transactions
-        transactionHistory.forEach(transaction => {
-            if (transaction.type === "income") {
-                totalIncome += transaction.amount;
-                incomeSources[transaction.category] = (incomeSources[transaction.category] || 0) + transaction.amount;
-                
-                // Create and append income history UI element
-                const historyContainer = document.getElementById("income-sec");
-                if (historyContainer) {
-                    const timeId = `time-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-                    const historyEntry = document.createElement("div");
-                    historyEntry.innerHTML = 
-                        `<div id="incomehistory-item">
-                            <div class="history-text">
-                                <strong>${transaction.category}</strong>
-                                <small id="${timeId}">${new Date(transaction.date).toLocaleDateString()}</small>
-                            </div>
-                            <div class="history-amount">+ ₹${transaction.amount}</div>
-                        </div>`;
-                    historyContainer.appendChild(historyEntry);
-                }
-
-                // Update chart data
-                const date = new Date(transaction.date);
-                const monthIndex = date.getMonth();
-                incomeData[monthIndex] += transaction.amount;
-            } else {
-                totalExpense += transaction.amount;
-                expenseCategories[transaction.category] = (expenseCategories[transaction.category] || 0) + transaction.amount;
-                
-                // Create and append expense history UI element
-                const exphistoryContainer = document.getElementById("exp-sec");
-                if (exphistoryContainer) {
-                    const timeId = `time-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-                    const exphistoryEntry = document.createElement("div");
-                    exphistoryEntry.innerHTML = 
-                        `<div id="expensehistory-item">
-                            <div class="history-text" id="exphist-text">
-                                <strong>${transaction.category}</strong>
-                                <small id="${timeId}">${new Date(transaction.date).toLocaleDateString()}</small>
-                            </div>
-                            <div class="history-amount">- ₹${transaction.amount}</div>
-                        </div>`;
-                    exphistoryContainer.appendChild(exphistoryEntry);
-                }
-
-                // Update chart data
-                const date = new Date(transaction.date);
-                const monthIndex = date.getMonth();
-                expenseData[monthIndex] += transaction.amount;
-            }
-        });
-        
-        updateTotal();
-    }
-
-    // Function to clear all transaction data
-    window.clearAllData = function() {
-        localStorage.removeItem("transactions");
-        alert("All transaction data cleared!");
-        location.reload();
-    };
 
     function updateTotal() {
         totalBalance = totalIncome - totalExpense;
@@ -207,7 +312,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 60000);
 
         transactionHistory.push({ type: "income", amount: incomeAmount, date: incDate, category: details });
-        localStorage.setItem("transactions", JSON.stringify(transactionHistory));
 
         let monthIndex = new Date().getMonth();
         updateChart(incomeAmount, 0, monthIndex);
@@ -266,7 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 60000);
 
         transactionHistory.push({ type: "expense", amount: expenseAmount, date: expenseDate, category: expenseDetails });
-        localStorage.setItem("transactions", JSON.stringify(transactionHistory));
+
         
         let monthIndex = new Date().getMonth();
         updateChart(0, expenseAmount, monthIndex);
@@ -364,11 +468,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateExpenseChart();
     });
 
-    // Update charts on initial load if we have saved data
-    if (savedTransactions) {
-        updateIncomeChart();
-        updateExpenseChart();
-    }
 
     //ai insights
 
@@ -400,15 +499,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     
         let highestExpenseCategory = Object.keys(expenseSummary).reduce((a, b) => 
-            expenseSummary[a] > expenseSummary[b] ? a : b, ""
-        );
-        highestExpenseCategory = highestExpenseCategory.toString();
+            expenseSummary[a] > expenseSummary[b] ? a : b);
     
-        let promptText = `Analyze my spending data and provide specific, actionable insights in 3 concise lines.
-Total spent: ₹${totalSpent}
-Highest spending category: ${highestExpenseCategory} (₹${expenseSummary[highestExpenseCategory]})
-My expense categories and amounts: ${Object.entries(expenseSummary).map(([cat, amt]) => `${cat}: ₹${amt}`).join(', ')}
-Focus on practical ways to reduce spending in my highest categories and improve my financial habits.`;
+        let promptText = `My total expenses this month are ₹${totalSpent}. The category I spent the most on is '${highestExpenseCategory}' with ₹${expenseSummary[highestExpenseCategory]}. Suggest ways to reduce my expenses effectively.`;
     
         try {
             let response = await fetch(API_URL, {
@@ -420,10 +513,10 @@ Focus on practical ways to reduce spending in my highest categories and improve 
             let data = await response.json();
             console.log("API Response:", data);
     
-            if (data && data.candidates && data.candidates[0]?.content?.parts?.length) {
-                document.getElementById("ai-output").innerText = data.candidates[0].content.parts[0].text;
+            if (data.candidates && data.candidates.length > 0) {
+                document.getElementById("ai-output").innerText = data.candidates[0].content;
             } else {
-                document.getElementById("ai-output").innerText = "Couldn't generate insights. Try again.";
+                document.getElementById("ai-output").innerText = "No insights generated.";
             }
         } catch (error) {
             console.error("Error fetching AI insights:", error);
@@ -436,4 +529,4 @@ Focus on practical ways to reduce spending in my highest categories and improve 
         timeout = setTimeout(generateInsights, 2000);  // Wait 2 seconds before sending request
     });
     
-});
+    });

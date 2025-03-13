@@ -1,52 +1,19 @@
-function Show() {
-    let menuIcon = document.querySelector(".menu-icon");
-    let closeIcon = document.querySelector(".close-icon");
-    let navLinks = document.querySelector(".nav-links");
-
-    if (navLinks.classList.contains("active")) {
-        navLinks.classList.remove("active");
-        menuIcon.style.display = "inline";
-        closeIcon.style.display = "none";
-    } else {
-        navLinks.classList.add("active");
-        menuIcon.style.display = "none";
-        closeIcon.style.display = "inline";
-    }
-}
-
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelector(".hamburger").addEventListener("click", Show);
-    
-    // Additional functionality for closing menu when clicking links
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            let navLinks = document.querySelector(".nav-links");
-            let menuIcon = document.querySelector(".menu-icon");
-            let closeIcon = document.querySelector(".close-icon");
-            
-            if (window.innerWidth <= 768) {
-                navLinks.classList.remove("active");
-                menuIcon.style.display = "inline";
-                closeIcon.style.display = "none";
-            }
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
+    function Show() {
+        let menuIcon = document.querySelector(".menu-icon");
+        let closeIcon = document.querySelector(".close-icon");
         let navLinks = document.querySelector(".nav-links");
-        let hamburger = document.querySelector(".hamburger");
-        
-        if (window.innerWidth <= 768 && 
-            navLinks.classList.contains("active") && 
-            !navLinks.contains(event.target) && 
-            !hamburger.contains(event.target)) {
-            
-            navLinks.classList.remove("active");
-            document.querySelector(".menu-icon").style.display = "inline";
-            document.querySelector(".close-icon").style.display = "none";
+
+        if (navLinks.style.display === "flex") {
+            navLinks.style.display = "none";
+            menuIcon.style.display = "inline";
+            closeIcon.style.display = "none";
+        } else {
+            navLinks.style.display = "flex";
+            menuIcon.style.display = "none";
+            closeIcon.style.display = "inline";
         }
-    });
+    }
 
     document.querySelector(".hamburger").addEventListener("click", Show);
 
@@ -71,63 +38,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (transaction.type === "income") {
                 totalIncome += transaction.amount;
                 incomeSources[transaction.category] = (incomeSources[transaction.category] || 0) + transaction.amount;
-                
-                // Create and append income history UI element
-                const historyContainer = document.getElementById("income-sec");
-                if (historyContainer) {
-                    const timeId = `time-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-                    const historyEntry = document.createElement("div");
-                    historyEntry.innerHTML = 
-                        `<div id="incomehistory-item">
-                            <div class="history-text">
-                                <strong>${transaction.category}</strong>
-                                <small id="${timeId}">${new Date(transaction.date).toLocaleDateString()}</small>
-                            </div>
-                            <div class="history-amount">+ ₹${transaction.amount}</div>
-                        </div>`;
-                    historyContainer.appendChild(historyEntry);
-                }
-
-                // Update chart data
-                const date = new Date(transaction.date);
-                const monthIndex = date.getMonth();
-                incomeData[monthIndex] += transaction.amount;
             } else {
                 totalExpense += transaction.amount;
                 expenseCategories[transaction.category] = (expenseCategories[transaction.category] || 0) + transaction.amount;
-                
-                // Create and append expense history UI element
-                const exphistoryContainer = document.getElementById("exp-sec");
-                if (exphistoryContainer) {
-                    const timeId = `time-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-                    const exphistoryEntry = document.createElement("div");
-                    exphistoryEntry.innerHTML = 
-                        `<div id="expensehistory-item">
-                            <div class="history-text" id="exphist-text">
-                                <strong>${transaction.category}</strong>
-                                <small id="${timeId}">${new Date(transaction.date).toLocaleDateString()}</small>
-                            </div>
-                            <div class="history-amount">- ₹${transaction.amount}</div>
-                        </div>`;
-                    exphistoryContainer.appendChild(exphistoryEntry);
-                }
-
-                // Update chart data
-                const date = new Date(transaction.date);
-                const monthIndex = date.getMonth();
-                expenseData[monthIndex] += transaction.amount;
             }
         });
         
         updateTotal();
     }
-
-    // Function to clear all transaction data
-    window.clearAllData = function() {
-        localStorage.removeItem("transactions");
-        alert("All transaction data cleared!");
-        location.reload();
-    };
 
     function updateTotal() {
         totalBalance = totalIncome - totalExpense;
@@ -364,11 +282,6 @@ document.addEventListener("DOMContentLoaded", function () {
         updateExpenseChart();
     });
 
-    // Update charts on initial load if we have saved data
-    if (savedTransactions) {
-        updateIncomeChart();
-        updateExpenseChart();
-    }
 
     //ai insights
 
@@ -404,11 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
         );
         highestExpenseCategory = highestExpenseCategory.toString();
     
-        let promptText = `Analyze my spending data and provide specific, actionable insights in 3 concise lines.
-Total spent: ₹${totalSpent}
-Highest spending category: ${highestExpenseCategory} (₹${expenseSummary[highestExpenseCategory]})
-My expense categories and amounts: ${Object.entries(expenseSummary).map(([cat, amt]) => `${cat}: ₹${amt}`).join(', ')}
-Focus on practical ways to reduce spending in my highest categories and improve my financial habits.`;
+        let promptText =`My total expenses this month are ₹${totalSpent}. The category I spent the most on is '${highestExpenseCategory || "Unknown"}' with ₹${expenseSummary[highestExpenseCategory] || 0}. Suggest ways to reduce my expenses effectively in only 3 lines.`;
     
         try {
             let response = await fetch(API_URL, {
